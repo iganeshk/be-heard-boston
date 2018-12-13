@@ -1,0 +1,101 @@
+<!-- <div class="container"> -->
+<!-- <div class="container" [ngStyle]="{'bottom': (goBack) ? '35%' : '50%'}"> -->
+<!-- <div class="container small-screen large-screen"> -->
+<div class="container" [ngClass]="{'check-screen' : (goBack) }">
+    <mat-card>
+    <div data-v-c2c57fc8="" class="container-infinite text-center">
+        <section data-v-c2c57fc8="">
+            <div data-v-c2c57fc8="" class="container-infinite reset-email-container">
+                <div data-v-c2c57fc8="" class="header-container padding-content">
+                    <!---->
+                    <div data-v-c2c57fc8="">
+                        <img class="app-logo" src="assets/images/beheardlogo.jpg" a.t="Logo">
+                        <!-- <div data-v-c2c57fc8="" class="title h5 text-black">Be Heard Boston</div> -->
+                        <div data-v-c2c57fc8="" class="margin-2x frozen"></div>
+                        <div data-v-c2c57fc8="" class="tip text-sm text-66">
+                        </div>
+                    </div>
+                    <div *ngIf="enteredCode && !goBack" style="margin-bottom: 35%;">
+                        <h4>Please wait</h4>
+                    </div>
+                <app-content-loader *ngIf="!loaded"></app-content-loader>
+                <p fxLayout *ngIf="loaded && !goBack" fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-bottom: 5%;margin-top: 3%;">
+                    Thanks for visiting the Beacon Panel Site!<br/><br/>To obtain your $5.00 Amazon giftcode please enter the 6 digit password as show in your letter. If you happen to lose your Amazon giftcode, just return to this webpage and re-enter your password.
+                </p>
+                <p *ngIf="goBack" fxLayout fxLayoutAlign="center center" fxLayoutGap="10px" style="margin-bottom: 1%;margin-top: 3%;">
+                    Your password has been verified. Your giftcode is available by clicking the button below. A new webpage will open and display your giftcode on the right hand side or the very bottom of the page depending on your device.<br/><br/>
+                    You will also have a chance to join the Beacon Panel where you can complete surveys and have your voice heard. Simply click on the "Start Survey Here" button on the left hand side or top of the page.<br/><br/>
+                    We want to thank you again for your time and consideration.
+                </p>
+            </div>
+            <div data-v-c2c57fc8="" class="form-container padding-content margin-auto">
+                <div data-v-c2c57fc8="" class="margin-4x frozen"></div>
+                <form data-v-c2c57fc8="" *ngIf="!enteredCode" (submit)="codeSubmit()" >
+                    <!---->
+                    <div data-v-c2c57fc8="" class="verify-step">
+                        <div data-v-c2c57fc8="" class="from-group">
+                            <div data-v-c2c57fc8="" class="from-item">
+                                <div data-v-0d6f2bda="" data-v-c2c57fc8="" class="verify-code-container input-code">
+                                    <!---->
+                                    <div data-v-0d6f2bda="" class="verify-code">
+                                        <div data-v-0d6f2bda="" class="input-field">
+                                            <input #focus [(ngModel)]="code" (focus)="focused = true" (blur)="focused = false" (keyup)="splitCode()" data-v-0d6f2bda="" id="input-code" name="input-code" type="text" maxlength="6" autocomplete="off"></div>
+                                            <label data-v-0d6f2bda="" for="input-code" class="code-blocks flex flex-content-between">
+                                                <div data-v-0d6f2bda="" class="input-text text-black no-strink flex center-vh" [ngClass]="codeArray.length===0 && focused ? 'filled' : ''">
+                                                    <span *ngIf="codeArray[0]">{{ codeArray[0] }}</span>
+                                                </div>
+                                                <div data-v-0d6f2bda="" class="input-text text-black no-strink flex center-vh" [ngClass]="codeArray.length===1 ? 'filled' : ''">
+                                                    <span *ngIf="codeArray[1]">{{ codeArray[1] }}</span>
+                                                </div>
+                                                <div data-v-0d6f2bda="" class="input-text text-black no-strink flex center-vh" [ngClass]="codeArray.length===2 ? 'filled' : ''">
+                                                    <span *ngIf="codeArray[2]">{{ codeArray[2] }}</span>
+                                                </div>
+                                                <div data-v-0d6f2bda="" class="input-text text-black no-strink flex center-vh" [ngClass]="codeArray.length===3 ? 'filled' : ''">
+                                                    <span *ngIf="codeArray[3]">{{ codeArray[3] }}</span>
+                                                </div>
+                                                <div data-v-0d6f2bda="" class="input-text text-black no-strink flex center-vh" [ngClass]="codeArray.length===4 ? 'filled' : ''">
+                                                    <span *ngIf="codeArray[4]">{{ codeArray[4] }}</span>
+                                                </div>
+                                                <div data-v-0d6f2bda="" class="input-text text-black no-strink flex center-vh" [ngClass]="codeArray.length===5 ? 'filled' : ''">
+                                                    <span *ngIf="codeArray[5]">{{ codeArray[5] }}</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-v-c2c57fc8="" class="margin-2x frozen"></div>
+                                <div data-v-c2c57fc8="" class="send-again text-right">
+                                    <div data-v-c2c57fc8="" class="resend-email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button mat-raised-button color="primary" class="padding" [disabled]="(codeArray.length !== 6 || !loaded)" type="submit">Veriy Password</button>
+                        <div *ngIf="!isValidCode" class="message-box error" fxLayout fxLayoutAlign="center center" fxLayoutGap="10px">
+                            <div>Invalid Password, Please try again.</div>
+                            <mat-icon>cancel</mat-icon>
+                        </div>
+                    </form>
+                    <div *ngIf="goBack" class="response-body" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+                        <div *ngIf="successResponse" class="message-box success mat-background-accent" fxLayout fxLayoutAlign="center center" fxLayoutGap="10px">
+                            <a [href]="claimUrl" target="_blank">Get Giftcode</a>
+                            <!-- <mat-icon>done</mat-icon> -->
+                        </div>
+                        <div *ngIf="errorResponse" class="message-box error" fxLayout fxLayoutAlign="center center" fxLayoutGap="10px">
+                            <div>Something went wrong Please try again.</div>
+                            <mat-icon>cancel</mat-icon>
+                        </div>
+                        <button (click)="resetPage()" mat-raised-button color="primary" class="padding">
+                        <mat-icon>arrow_back</mat-icon>
+                        Go Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <p class="footer">
+        Please contact us for any information or questions at <a href="mailto:beacon@umb.edu"> beacon@umb.edu </a> or call (800) 492-5845
+    </p>
+    </mat-card>
+</div>

@@ -1,6 +1,6 @@
 # Be Heard Boston - Survey Amazon Gift Card Redemption
 
-
+Be Heard Boston survey gift card redemption webApp based on Angular 6 and NodeJS developed for Center for Survey and Research UMass Boston
 
 ## Prerequisites
 

@@ -87,4 +87,4 @@ export const PROD_ENV = {
 
 ## Demo
 
-![be-heard-boston-demo](/demo/beheardboston_demo.gif?raw=true "App Demo")
+![be-heard-boston-demo](/docs/beheardboston_demo.gif?raw=true "webApp Demo")
